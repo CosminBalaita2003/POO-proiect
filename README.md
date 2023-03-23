@@ -10,7 +10,7 @@ Clase:
 
 Functionalitati:
    1. Aplica reducere de student daca parametrul primit este true (Bilete bilet(20, true); //se va oferi reducere).
-   2.Aplica restrictii pandemice atunci cand este cazul:
+   2. Aplica restrictii pandemice atunci cand este cazul:
             sala1.setRestrictii(true); ///se vor pune restrictii
             sala1.getNumar_locuri(sala1.getRestrictii());
             
