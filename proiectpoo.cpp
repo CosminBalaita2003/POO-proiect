@@ -225,11 +225,11 @@ int main()
     SalaCinema sala1;
     sala1.setSala(1);
     sala1.setNumar_locuri(400);
-    sala1.setRestrictii(true);
+    sala1.setRestrictii(true); ///se vor pune restrictii
     sala1.getNumar_locuri(sala1.getRestrictii());
     sala1.afisare();
     
-    Bilete bilet(20, true);
+    Bilete bilet(20, true); //se va oferi reducere
     bilet.setOra(20);
     bilet.setMinut(30);
     bilet.getPret();
@@ -252,12 +252,12 @@ int main()
 
     SalaCinema sala2;
     sala2.setSala(2);
-    sala2.setNumar_locuri(400);
-    sala2.setRestrictii(false);
+    sala2.setNumar_locuri(400); 
+    sala2.setRestrictii(false);//nu se vor pune restrictii
     sala2.getNumar_locuri(sala2.getRestrictii());
     sala2.afisare();
     
-    Bilete bilet2(30, false);
+    Bilete bilet2(30, false); //nu se va oferi reducere
     bilet2.setOra(20);
     bilet2.setMinut(40);
     bilet2.getPret();
