@@ -15,7 +15,7 @@ class String
             strcpy(sir, str);
         }
 
-        String(const String& elem) ///constr cu parametru String
+        String(const String& elem) ///constr de copiere
         {
             lungime = elem.lungime;
             sir = new char[lungime + 1];
