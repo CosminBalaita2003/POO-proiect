@@ -9,8 +9,8 @@ Clase:
   5. SalaCinema- retine numarul salii si numarul de locuri, iar in variabila restrictii de tip bool daca se aplica restrictii pandemice. In cazul in care se aplica restrictii numarul de locuri se imparte la 2.
 
 Functionalitati:
-    Aplica reducere de student daca parametrul primit este true (Bilete bilet(20, true); //se va oferi reducere).
-    Aplica restrictii pandemice atunci cand este cazul:
+   1. Aplica reducere de student daca parametrul primit este true (Bilete bilet(20, true); //se va oferi reducere).
+   2.Aplica restrictii pandemice atunci cand este cazul:
             sala1.setRestrictii(true); ///se vor pune restrictii
             sala1.getNumar_locuri(sala1.getRestrictii());
             
