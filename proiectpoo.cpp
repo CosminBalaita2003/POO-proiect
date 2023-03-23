@@ -202,7 +202,9 @@ class SalaCinema
 
     void afisare()
     {
-        cout<<"\nSala este "<<sala<<" iar numarul de locuri este "<<numar_locuri<<" locuri \n";
+        cout<<"\nSala este "<<sala<<" iar numarul de locuri este "<<numar_locuri<<" locuri";
+        if (restrictii==true) cout<<" din cauza restrictiilor";
+        cout<<"\n";
     }
 };
 
