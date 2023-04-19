@@ -1,0 +1,16 @@
+# ninja log v5
+6	1756	7035472936519148	CMakeFiles/POO_proiect.dir/proiectpoo.cpp.obj	bbbcbe9e5686e5a1
+6	534	7035473768285767	CMakeFiles/POO_proiect.dir/1.cpp.obj	81d3794ae5ba68fb
+1757	2212	7035472941003011	POO_proiect.exe	caa967b96b6b9ee1
+2	323	7035474547680938	build.ninja	34f4ed8c92c7a372
+4	684	7035474555901038	POO_proiect.exe	caa967b96b6b9ee1
+3	1807	7035476422546571	CMakeFiles/POO_proiect.dir/proiectpoo.cpp.obj	bbbcbe9e5686e5a1
+1808	2274	7035476427142376	POO_proiect.exe	caa967b96b6b9ee1
+5	1815	7035489320598604	CMakeFiles/POO_proiect.dir/proiectpoo.cpp.obj	bbbcbe9e5686e5a1
+1816	2352	7035489325920254	POO_proiect.exe	caa967b96b6b9ee1
+4	1718	7035489635761421	CMakeFiles/POO_proiect.dir/proiectpoo.cpp.obj	bbbcbe9e5686e5a1
+1719	2244	7035489640897801	POO_proiect.exe	caa967b96b6b9ee1
+4	1731	7035491553415331	CMakeFiles/POO_proiect.dir/proiectpoo.cpp.obj	bbbcbe9e5686e5a1
+1732	2211	7035491558171028	POO_proiect.exe	caa967b96b6b9ee1
+4	1817	7035493232683379	CMakeFiles/POO_proiect.dir/proiectpoo.cpp.obj	bbbcbe9e5686e5a1
+1818	2300	7035493237418645	POO_proiect.exe	caa967b96b6b9ee1

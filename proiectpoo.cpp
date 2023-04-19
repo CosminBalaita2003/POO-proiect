@@ -1,5 +1,74 @@
 #include <bits/stdc++.h>
 using namespace std;
+class MyException : public std::exception {
+    string msg;
+public:
+    MyException(const string &mesaj) : msg(mesaj) {}
+
+    virtual const char *what() const throw() {
+        return msg.c_str();
+    }
+};
+double verificare0(double x) {
+    if (x == 0) {
+        throw MyException("Numarul nu poate fi 0");
+    }
+    return x;
+}
+void processInput(double x) {
+    try {
+        double result = verificare0(x);
+        std::cout << result <<" Locuri rezervate"<< std::endl;
+    } catch (MyException &e) {
+        std::string message = std::string("Invalid input: ") + e.what();
+        throw MyException(message);
+    }
+}
+int CitireCash(){
+    int cash;
+    cout<<"Introduceti suma de bani:";
+    cin >> cash;
+    if (cash < 0){
+        throw MyException("Suma de bani nu poate fi negativa!");
+    }
+    return cash;
+}
+double citireNumarPeesoane(){
+    double nr;
+    cout<<"Introduceti numarul de persoane:";
+    cin >> nr;
+    try{
+        processInput(nr);
+        if (nr < 0){
+            throw MyException("Numarul de persoane nu poate fi negativ!");
+        }
+        else if (nr!= int(nr))
+            throw MyException("Numarul de persoane nu poate fi zecimal!");
+    }
+    catch(MyException &e){
+        cout<<"Eroare:"<<e.what()<<endl;
+    }
+
+    return nr;
+
+}
+double citirepret(){
+    double pret;
+    cout<<"Introduceti pretul:";
+    cin >> pret;
+    if (pret < 0){
+        throw MyException("Pretul nu poate fi negativ!");
+    }
+    return pret;
+};
+
+
+void PrintMessaje(const string& mesaj) {
+    if ( mesaj.empty()){
+        throw MyException("Mesajul este gol!");
+    }
+    cout << mesaj << endl;
+}
 class director{
 protected:
     string firma;
@@ -377,7 +446,7 @@ public:
     friend istream &operator>>(istream &in, Bilete &b)
     {
         cout<<"Pret:";
-        in>>b.pret;
+        cin>>b.pret;
         cout<<"Ora:";
         in>>b.ora;
         cout<<"Minut:";
@@ -391,7 +460,7 @@ public:
     friend ostream &operator<<(ostream &out, const Bilete &b)
     {
         out<<"Biletul costa "<<b.get_pret_final()<<" lei si este pentru data de "<<b.data<<" la ora "<<b.ora<<":"<<b.minut<<'\n';
-        if (b.student==true)
+        if (b.student)
         {
             out<<"Biletul este studentesc."<<'\n';
         }
@@ -523,21 +592,213 @@ public:
         return out;
     }
 };
+/* Definiți și extindeți (moșteniți) minim o interfață (clasă fără date membru,
+doar metode pur virtuale și un destructor virtual) care să aibă minim două
+metode (alternativ: minim două interfețe, fiecare cu cel puțin o metodă).
+*/
+class IPayment{
+public:
+    virtual void ProcessPayment(double cash)=0;
+    virtual void ProcessRest(double cash)=0;
+    virtual ~IPayment()= default;
+};
+class CashPayment : public IPayment{
+public:
+    void ProcessPayment(double cash) override {
+        cout<<"Cash payment: "<<cash<<endl;
+    }
+    void ProcessRest(double cash) override{
+        cout<<"Rest: "<<cash<<endl;
+    }
+};
+///Definiți și extindeți (moșteniți) minim o clasă de bază abstractă (clasă capoate avea date membru, dar are cel puțin o metodă pur virtuală).
+class Food{
 
-int main()
-{
+    double pret;
+public:
+    Food(double p):pret(p){}
+    virtual void afisare()=0;
+    virtual ~Food()= default;
+    virtual double get_pre() const{
+        return pret;
+    }
+};
+class Pizza : public Food{
+    string nume;
+public:
+    Pizza( double p, string nume):Food(p),nume(nume){}
+    void afisare() override {
+        cout<<"Pizza "<<nume<<" are pretul de "<<get_pre()<<endl;
+    }
+};
+class Afis{
+public:
+    virtual double aria(){
+        cout<<"Aria afisului este: \n";
+        return 0;
+    }
+    virtual void desen(){
+        cout<<"Desenul afisului este: \n";
+    }
+    virtual ~Afis()= default;
+
+};
+class Dreptunghi: public Afis{
+    double l;
+    double L;
+public:
+    Dreptunghi(double l, double L):l(l),L(L){}
+    double aria() override {
+        cout<<"Aria dreptunghiului este: ";
+        return l*L;
+    }
+};
+class Patrat: public Afis{
+    double l;
+public:
+    Patrat(double l):l(l){}
+    double aria() override {
+        cout<<"Aria patratului este: ";
+        return l*l;
+    }
+};
+class Triunghi: public Afis{
+    double l;
+    double h;
+public:
+    Triunghi(double l, double h):l(l),h(h){}
+    double aria() override {
+        cout<<"Aria triunghiului este: ";
+        return l*h/2;
+    }
+};
+
+class Afis3D : public Afis{
+public:
+    void desen() override {
+        cout<<"Desenul afisului 3D este: \n";
+    }
+    void desen3D(){
+        cout<<"Afisul e acum 3D \n";
+    }
+};
+class cinema{
+    static int nr_sali;
+    static int nr_filme;
+public:
+    static int get_nr_sali(){
+        return nr_sali;
+    }
+    static int get_nr_filme(){
+        return nr_filme;
+    }
+    static void add_movie (int nr){
+        nr_filme+=nr;
+    }
+};
+int cinema::nr_sali = 5;
+int cinema::nr_filme = 10;
+int main() {
+    cout<<"\n\nNumarul de sali disponibile in cinema este:"<<cinema::get_nr_sali()<<'\n';
+    cout<<"Numarul de filme disponibile in cinema este:"<<cinema::get_nr_filme()<<'\n';
+    cinema::add_movie(5);
+    cout<<"Numarul nou de filme disponibile in cinema este:"<<cinema::get_nr_filme()<<'\n';
     SalaCinema s;
     cin>>s;
     Bilete b;
     cin>>b;
+    ///exceptie daca pretul=0
+    try {
+        if (b.get_pret_final() == 0)
+            throw MyException("Pretul este 0?!?");
+    }
+    catch (MyException &e){
+        cout<<e.what()<<endl;
+    }
     Bilet_3D b3;
     cin>>b3;
+    try {
+        if (b.get_pret_final() == 0)
+            throw MyException("Pretul este 0?!?");
+    }
+    catch (MyException &e){
+        cout<<e.what()<<endl;
+    }
     cout<<s;
     cout<<"bilet simplu\n"<<b;
     cout<<"bilet 3D\n"<<b3;
-    cout<<b3;
+    cout<<"- - - -- - - - ";
+    cout<<"\nPreteul final al biletului simplu este: "<<b.get_pret_final()+b3.get_pret_final()<<endl;
+    IPayment *payment = new CashPayment();
+
+
+    try {
+        int n=CitireCash();
+        payment->ProcessPayment(n);
+        payment->ProcessRest(n-(b.get_pret_final()+b3.get_pret_final()));
+        cout<<"Payment processed"<<endl;
+        delete payment;
+        cout<<"- - -- - - - "<<endl;
+    }
+    catch (MyException &e){
+        cout<<e.what()<<endl;
+    }
+    catch (exception &e){
+        cout<<e.what()<<endl;
+    }
+    catch (...){
+        cout<<"Unknown exception"<<endl;
+    }
 
     Bilet_3D b2(25.5, 20, 30, "12.12.2020", 1, 1);
     cout<<"\nExemplu de bilet 3D:\n"<<b2;
+
+
+
+
+    Food *f = new Pizza(25.5, "Diavola");
+    f->afisare();
+
+    Afis *d = new Dreptunghi(2, 3);
+    cout<<d->aria()<<'\n';
+    Afis *p = new Patrat(2);
+    cout<<p->aria()<<'\n';
+    Afis *t = new Triunghi(2, 3);
+    cout<<t->aria()<<'\n';
+    delete d, p, t;
+
+
+    Afis *afis = new Afis3D();
+    Afis3D *afis3d=dynamic_cast<Afis3D*>(afis);
+    if(afis3d!=nullptr) {
+        cout << "DownCast la Afis3D reusit"<<'\n';
+        afis3d->desen3D();
+    }
+    else
+        cout<<"Nu se poate face cast la Afis3D";
+
+    delete afis;
+
+    ///exceptii
+    try{
+        PrintMessaje("");
+    }
+    catch(MyException &e){
+        cout << "error:"<<e.what() << endl;
+    }
+    try{
+        PrintMessaje("Textul nu e gol");
+    }
+    catch(MyException &e){
+        cout << "error:"<<e.what() << endl;
+    }
+    try{
+        double n=citireNumarPeesoane();
+
+    }
+    catch(MyException &e){
+        cout << "error:"<<e.what() << endl;
+    }
+
     return 0;
 }
