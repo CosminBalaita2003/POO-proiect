@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+/// clasa exceptie pentru a afisa mesajele de eroare
 class MyException : public std::exception {
     string msg;
 public:
@@ -9,12 +10,14 @@ public:
         return msg.c_str();
     }
 };
+/// functie pentru a verifica daca numarul de persoane este 0
 double verificare0(double x) {
     if (x == 0) {
         throw MyException("Numarul nu poate fi 0");
     }
     return x;
 }
+/// functie pentru a procesa inputul pentru numarul de persoane
 void processInput(double x) {
     try {
         double result = verificare0(x);
@@ -24,6 +27,7 @@ void processInput(double x) {
         throw MyException(message);
     }
 }
+/// functie care citeste suma de bani si se asigura ca nu este negativa
 int CitireCash(){
     int cash;
     cout<<"Introduceti suma de bani:";
@@ -33,6 +37,7 @@ int CitireCash(){
     }
     return cash;
 }
+/// functie care citeste numarul de persoane si se asigura ca nu este negativ / zecimal
 double citireNumarPeesoane(){
     double nr;
     cout<<"Introduceti numarul de persoane:";
@@ -52,6 +57,7 @@ double citireNumarPeesoane(){
     return nr;
 
 }
+/// functie care citeste pretul si se asigura ca nu este negativ
 double citirepret(){
     double pret;
     cout<<"Introduceti pretul:";
@@ -69,6 +75,9 @@ void PrintMessaje(const string& mesaj) {
     }
     cout << mesaj << endl;
 }
+
+
+/// clasa director care retine firma la care lucreaza leading-actorul
 class director{
 protected:
     string firma;
@@ -115,7 +124,8 @@ public:
     }
 
 };
-class Actor
+
+class Actor /// retine numele, prenumele, varsta si numarul de nominalizari
 {
     string nume;
     string prenume;
@@ -123,14 +133,14 @@ class Actor
 protected:
     int nominalizari;
 public:
-    Actor()
+    Actor() /// constructor neparametrizat
     {
         nume=" ";
         prenume=" ";
         varsta=0;
 
     }
-    Actor(string n, string p, int v, int nom=0)
+    Actor(string n, string p, int v, int nom=0) /// constructor parametrizat
     {
         nume=n;
         prenume=p;
@@ -138,7 +148,7 @@ public:
         nominalizari=nom;
     }
 
-    ~Actor()
+    ~Actor() /// destructor
     {
         nume=" ";
         prenume=" ";
@@ -198,7 +208,7 @@ public:
         return in;
     }
 };
-class Leading_Actor : public Actor, public director
+class Leading_Actor : public Actor, public director /// clasa care mosteneste clasa Actor si clasa director
 {
     int numar_filme;
 public:
@@ -206,7 +216,7 @@ public:
     {
         numar_filme=0;
     }
-    Leading_Actor(string n, string p, int v,int nom, string f, int nr) : Actor(n,p,v,nom), director(f)
+    Leading_Actor(string n, string p, int v,int nom, string f, int nr) : Actor(n,p,v,nom), director(f) /// constructor parametrizat
     {
         numar_filme=nr;
     }
@@ -226,7 +236,7 @@ public:
     friend istream &operator>>(istream &in, Leading_Actor &l)
     {
         cout<<"Leading actor - - - Director Executiv:"<<'\n';
-        in>>(Actor&)l;
+        in>>(Actor&)l; 
         cout<<"Numarul de filme:";
         in>>l.numar_filme;
         cout<<"Firma:";
@@ -242,7 +252,7 @@ public:
         return out;
     }
 };
-class Personaj{
+class Personaj{ /// clasa care retine numele personajului si actorul care il joaca
     string nume;
     Actor actor;
 public:
@@ -287,14 +297,14 @@ public:
         return out;
     }
 };
-class Film
+class Film /// clasa care retine titlul, genul, durata, vectorul de personaje si actorul principal
 {
     string titlu;
     string gen;
     int durata;
     Leading_Actor a;
     vector <Personaj> p;
-    Personaj p1;
+    
 public:
     Film()
     {
@@ -302,7 +312,7 @@ public:
         gen=" ";
         durata=0;
     }
-    Film(string t, string g, int d, vector <Personaj> p,Leading_Actor a)
+    Film(string t, string g, int d, vector <Personaj> p,Leading_Actor a) /// constructor parametrizat
     {
         titlu=t;
         gen=g;
@@ -380,7 +390,7 @@ public:
         return out;
     }
 };
-class Bilete{
+class Bilete{ /// clasa care retine pretul, ora, minutul, data si daca este student sau nu
     float pret;
     int ora;
     int minut;
@@ -439,7 +449,7 @@ public:
     {
         return data;
     }
-    float get_pret_final() const
+    float get_pret_final() const /// functie care calculeaza pretul final in functie categoria: student sau nu
     {
         return (pret-pret*0.5*student);
     }
@@ -472,7 +482,7 @@ public:
     }
 
 };
-class Bilet_3D : public Bilete
+class Bilet_3D : public Bilete /// clasa care m`are daca biletul este 3D si daca are ochelari 3D
 {
     bool ochelari;
 public:
@@ -510,7 +520,7 @@ public:
         if (b.ochelari==true)
         {
             out<<"Biletul este 3D."<<'\n';
-            out<<"Service 3D:"<< b.get_pret_final()+b.get_pret_final()*0.1<<'\n';
+            out<<"Service 3D:"<< b.get_pret_final()+b.get_pret_final()*0.1<<'\n'; /// se adauga 10% la pretul biletului
         }
         else
         {
@@ -519,7 +529,7 @@ public:
         return out;
     }
 };
-class SalaCinema
+class SalaCinema /// clasa principala care contine sala, numarul de locuri, daca respecta distanta si un obiect de tip Film
 {
     int sala;
     int numar_locuri;
@@ -596,13 +606,13 @@ public:
 doar metode pur virtuale și un destructor virtual) care să aibă minim două
 metode (alternativ: minim două interfețe, fiecare cu cel puțin o metodă).
 */
-class IPayment{
+class IPayment{ /// interfata care contine metodele de plata si rest
 public:
     virtual void ProcessPayment(double cash)=0;
     virtual void ProcessRest(double cash)=0;
     virtual ~IPayment()= default;
 };
-class CashPayment : public IPayment{
+class CashPayment : public IPayment{ /// clasa care implementeaza metodele de plata si rest
 public:
     void ProcessPayment(double cash) override {
         cout<<"Cash payment: "<<cash<<endl;
@@ -612,7 +622,7 @@ public:
     }
 };
 ///Definiți și extindeți (moșteniți) minim o clasă de bază abstractă (clasă capoate avea date membru, dar are cel puțin o metodă pur virtuală).
-class Food{
+class Food{ /// clasa de baza abstracta care contine pretul
 
     double pret;
 public:
@@ -623,7 +633,7 @@ public:
         return pret;
     }
 };
-class Pizza : public Food{
+class Pizza : public Food{ /// clasa derivata care mosteneste clasa de baza abstracta
     string nume;
 public:
     Pizza( double p, string nume):Food(p),nume(nume){}
@@ -631,7 +641,7 @@ public:
         cout<<"Pizza "<<nume<<" are pretul de "<<get_pre()<<endl;
     }
 };
-class Afis{
+class Afis{ /// clasa de baza abstracta care contine metodele de afisare a ariei si desenul
 public:
     virtual double aria(){
         cout<<"Aria afisului este: \n";
@@ -643,7 +653,7 @@ public:
     virtual ~Afis()= default;
 
 };
-class Dreptunghi: public Afis{
+class Dreptunghi: public Afis{ /// clasa derivata care mosteneste clasa de baza abstracta
     double l;
     double L;
 public:
@@ -653,7 +663,7 @@ public:
         return l*L;
     }
 };
-class Patrat: public Afis{
+class Patrat: public Afis{ /// clasa derivata care mosteneste clasa de baza abstracta
     double l;
 public:
     Patrat(double l):l(l){}
@@ -662,7 +672,7 @@ public:
         return l*l;
     }
 };
-class Triunghi: public Afis{
+class Triunghi: public Afis{  /// clasa derivata care mosteneste clasa de baza abstracta
     double l;
     double h;
 public:
@@ -673,7 +683,7 @@ public:
     }
 };
 
-class Afis3D : public Afis{
+class Afis3D : public Afis{ /// clasa derivata care mosteneste clasa de baza abstracta
 public:
     void desen() override {
         cout<<"Desenul afisului 3D este: \n";
@@ -682,7 +692,7 @@ public:
         cout<<"Afisul e acum 3D \n";
     }
 };
-class cinema{
+class cinema{ /// clasa care contine numarul de sali si filme
     static int nr_sali;
     static int nr_filme;
 public:
@@ -696,8 +706,8 @@ public:
         nr_filme+=nr;
     }
 };
-int cinema::nr_sali = 5;
-int cinema::nr_filme = 10;
+int cinema::nr_sali = 5; /// initializare variabile statice
+int cinema::nr_filme = 10; /// initializare variabile statice
 int main() {
     cout<<"\n\nNumarul de sali disponibile in cinema este:"<<cinema::get_nr_sali()<<'\n';
     cout<<"Numarul de filme disponibile in cinema este:"<<cinema::get_nr_filme()<<'\n';
