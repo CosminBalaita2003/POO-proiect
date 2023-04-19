@@ -1,13 +1,25 @@
-# POO-proiect
+# Cinematograf
 Numele Proiectului: proiectpoo.cpp
 Tema: cinematograf
-Clase:
-  1. String - pentru a memora variabile de tip string pentru a fi utilizate in celelate clase
-  2. Actor - retine numele actorului (String) si varsta sa, va fi utilizat pentru a creea cast-ul unui film
-  3. Film - retine titlul (String)si durata filmului si un vector de Actori pentru a memora cast-ul
-  4. Bilete - retine pretul, ora si minutul difuzarii, si in variabila student de tip bool daca este stuent sau nu. Daca este student se va oferi o reducere de 5 lei
-  5. SalaCinema- retine numarul salii si numarul de locuri, iar in variabila restrictii de tip bool daca se aplica restrictii pandemice. In cazul in care se aplica restrictii numarul de locuri se imparte la 2.
-
+Clase: Proiectul are in total 19 clase, dintre care 2 abtracte si una.
+  
+Clasele sunt:
+  1. Director
+  2. Actor
+  3. Leading_Actor
+  4. Personaj
+  5. Film
+  6. Bilete
+  7. bilet_3D
+  8. SalaCinema
+  9. Cinema- variabile si metode statice
+  10. Interfata IPayment
+  11. CashPayment
+  12. Clasa abstracta: Food
+  13. Pizza
+  14. Interfata Afis
+  15. Dreptunghi, Patrat, Triunghi si Afis3D care mostenesc clasa afis si suprascriu metode virtuale definite in clasa Afis pentru a calcula aria afisului pentru forma respectiva
+  
 Functionalitati:
    1. Aplica reducere de student daca parametrul primit este true (Bilete bilet(20, true); //se va oferi reducere).
    2. Aplica restrictii pandemice atunci cand este cazul:
