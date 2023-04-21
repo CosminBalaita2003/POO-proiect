@@ -411,6 +411,15 @@ public:
         }
         return out;
     }
+     Film &operator=(const Film &f)
+    {
+        titlu = f.titlu;
+        gen = f.gen;
+        durata = f.durata;
+        p = f.p;
+        a = f.a;
+        return *this;
+    }
 };
 class Bilete
 { /// clasa care retine pretul, ora, minutul, data si daca este student sau nu
