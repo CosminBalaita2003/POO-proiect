@@ -1,7 +1,7 @@
 # Cinematograf
-Numele Proiectului: proiectpoo.cpp
-Tema: cinematograf
-Clase: Proiectul are in total 19 clase, dintre care 2 abtracte si una.
+* Numele Proiectului: proiectpoo.cpp
+* Tema: cinematograf
+* Clase: Proiectul are in total 19 clase, dintre care 2 abtracte si una.
 1. Director
     - are o varibila protected :
 	    - string "firma" care retine la ce firma lureaza directorul de film.
