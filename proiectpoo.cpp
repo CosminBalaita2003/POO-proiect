@@ -93,51 +93,50 @@ void PrintMessaje(const string &mesaj)
     cout << mesaj << endl;
 }
 
-/// clasa director care retine firma la care lucreaza leading-actorul
-class director
+/// clasa Nominalizare care retine premiu_nominalizare la care lucreaza leading-actorul
+class Nominalizare
 {
 protected:
-    string firma;
-
+    string premiu_nominalizare;
 public:
-    director()
+    Nominalizare()
     {
-        firma = " ";
+        premiu_nominalizare = " ";
     }
-    director(string f)
+    Nominalizare(string f)
     {
-        firma = f;
+        premiu_nominalizare = f;
     }
-    director(const director &d)
+    Nominalizare(const Nominalizare &d)
     {
-        firma = d.firma;
+        premiu_nominalizare = d.premiu_nominalizare;
     }
-    ~director()
+    ~Nominalizare()
     {
-        firma = " ";
+        premiu_nominalizare = " ";
     }
-    string get_firma() const
+    string get_premiu_nominalizare() const
     {
-        return firma;
+        return premiu_nominalizare;
     }
-    void set_firma(string f)
+    void set_premiu_nominalizare(string f)
     {
-        firma = f;
+        premiu_nominalizare = f;
     }
-    friend istream &operator>>(istream &in, director &d)
+    friend istream &operator>>(istream &in, Nominalizare &d)
     {
-        in >> d.firma;
+        in >> d.premiu_nominalizare;
         return in;
     }
-    friend ostream &operator<<(ostream &out, const director &d)
+    friend ostream &operator<<(ostream &out, const Nominalizare &d)
     {
-        out << "Directorul este:" << '\n';
-        out << "Firma:" << d.firma << '\n';
+        out << "Nominalizareul este:" << '\n';
+        out << "premiu_nominalizare:" << d.premiu_nominalizare << '\n';
         return out;
     }
-    director &operator=(const director &d)
+    Nominalizare &operator=(const Nominalizare &d)
     {
-        firma = d.firma;
+        premiu_nominalizare = d.premiu_nominalizare;
         return *this;
     }
 };
@@ -224,7 +223,7 @@ public:
         return in;
     }
 };
-class Leading_Actor : public Actor, public director /// clasa care mosteneste clasa Actor si clasa director
+class Leading_Actor : public Actor, public Nominalizare /// clasa care mosteneste clasa Actor si clasa Nominalizare
 {   
     protected:
     int numar_filme;
@@ -234,7 +233,7 @@ public:
     {
         numar_filme = 0;
     }
-    Leading_Actor(string n, string p, int v, int nom, string f, int nr) : Actor(n, p, v, nom), director(f) /// constructor parametrizat
+    Leading_Actor(string n, string p, int v, int nom, string f, int nr) : Actor(n, p, v, nom), Nominalizare(f) /// constructor parametrizat
     {
         numar_filme = nr;
     }
@@ -253,12 +252,12 @@ public:
 
     friend istream &operator>>(istream &in, Leading_Actor &l)
     {
-        cout << "Leading actor - - - Director Executiv:" << '\n';
+        cout << "Leading actor:" << '\n';
         in >> (Actor &)l;
         cout << "Numarul de filme:";
         in >> l.numar_filme;
-        cout << "Firma:";
-        in >> (director &)l;
+        cout << "premiu_nominalizare:";
+        in >> (Nominalizare &)l;
         return in;
     }
     friend ostream &operator<<(ostream &out, const Leading_Actor &l)
@@ -266,7 +265,7 @@ public:
         cout << "\nLeading actor:";
         out << l.get_prenume() << " " << l.get_nume() << " are " << l.get_varsta() << " ani." << '\n';
         out << "A jucat in " << l.numar_filme << " filme." << '\n';
-        out << "Totodata este director la:" << l.get_firma() << '\n';
+        out << "Totodata este Nominalizare la:" << l.get_premiu_nominalizare() << '\n';
         return out;
     }
 };
@@ -403,7 +402,7 @@ public:
         out << "Filmul " << f.titlu << " este de genul " << f.gen << " si are o durata de " << f.durata << " minute." << '\n';
         out << "Actorul principal este " << f.a.get_prenume() << " " << f.a.get_nume() << " care are " << f.a.get_varsta() << " ani,"
             << " jucand  in " << f.a.get_numar_filme() << " filme"
-            << " fiind totodata regizor la " << f.a.get_firma() << '\n';
+            << " fiind in prezent nominalizat pentru premiul " << f.a.get_premiu_nominalizare() << '\n';
         out << "Personajele sunt:" << '\n';
         for (int i = 0; i < f.p.size(); i++)
         {
