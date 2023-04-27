@@ -225,7 +225,8 @@ public:
     }
 };
 class Leading_Actor : public Actor, public director /// clasa care mosteneste clasa Actor si clasa director
-{
+{   
+    protected:
     int numar_filme;
 
 public:
@@ -516,6 +517,7 @@ public:
 };
 class Bilet_3D : public Bilete /// clasa care m`are daca biletul este 3D si daca are ochelari 3D
 {
+    protected: 
     bool ochelari;
 
 public:
@@ -836,7 +838,7 @@ int main()
     Bilet_3D b2(25.5, 20, 30, "12.12.2020", 1, 1);
     cout << "\nExemplu de bilet 3D:\n"
          << b2;
-
+    //polimorfism la executie
     Food *f = new Pizza(25.5, "Diavola");
     f->afisare();
 
