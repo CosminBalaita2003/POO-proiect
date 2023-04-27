@@ -2,6 +2,7 @@
 * Numele Proiectului: proiectpoo.cpp
 * Tema: cinematograf
 * Clase: Proiectul are in total 19 clase, dintre care 2 abtracte si una.
+## Clase:
 1. Director
     - are o varibila protected :
 	    - string "firma" care retine la ce firma lureaza directorul de film.
@@ -122,3 +123,36 @@
 19. MyException
 	-	variabila string: "msg"
 	-	pentru exceptii
+## Mostenire
+- clasa Leading_Actor mosteneste clasele Actor si director, cu variabila protected numar_filme
+- clasa Bilet_3D mosteneste clasa Bilete cu variabila protected ochelari
+- clasa Pizza mosteneste clasa abstracta Food
+## Interfete si metode virtuale 
+- Interfata IPayment conteine metode virtuale de plata :Process payment si ProcessRest si destructor si este mostenita de clasa CashPayment care implementeaza metodele de plata
+- clasa Food este abstrata si e mostenita de clasa Pizza
+- clasele: Patrat, dreptunghi, triunghi si Afis3d mostenesc clasa afis si suprascriu metodele de afisare
+3# Exceptii
+```
+	class MyException : public std::exception
+	{
+    	string msg;
+
+	public:
+   		MyException(const string &mesaj) : msg(mesaj) {}
+
+    		virtual const char *what() const throw()
+    		{
+        	return msg.c_str();
+    		}
+		};
+
+```
+- exceptii arunctate in : 
+	- verificare0(double x)
+	- processInput(double x)
+	- CitireCash()
+	- citireNumarPeesoane()
+	- citirepret()
+## Variavile si metode statice:
+- in clasa cinema : nr_sali, nr_filme sunt variabile statice
+- metodele statice: static int get_nr_sali(), static int get_nr_filme()
