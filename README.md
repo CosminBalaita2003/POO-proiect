@@ -3,9 +3,9 @@
 * Tema: cinematograf
 * Clase: Proiectul are in total 19 clase, dintre care 2 abtracte si una.
 ## Clase:
-1. Director
+1. Nominalizare
     - are o varibila protected :
-	    - string "firma" care retine la ce firma lureaza directorul de film.
+	    - string "premiu_nominalizare" 
     - va fi mostenita de clasa LeadingActor
     - contine constructori parametrizti si neparametrizati, de copiere, si destructor
     - getteri si setteri
@@ -124,7 +124,7 @@
 	-	variabila string: "msg"
 	-	pentru exceptii
 ## Mostenire
-- clasa Leading_Actor mosteneste clasele Actor si director, cu variabila protected numar_filme
+- clasa Leading_Actor mosteneste clasele Actor si Nominalizare, cu variabila protected numar_filme
 - clasa Bilet_3D mosteneste clasa Bilete cu variabila protected ochelari
 - clasa Pizza mosteneste clasa abstracta Food
 ## Interfete si metode virtuale 
