@@ -400,7 +400,7 @@ public:
         f.actori.push_back(f.actor_principal);
         if (n > 1)
         {
-            cout << "Actori secundari:";
+            cout << "Actori secundari:\n";
             for (int i = 1; i < n; i++)
             {
                 Actor a;
@@ -417,7 +417,7 @@ public:
     {
 
         out << "Filmul " << f.titlu << " este de genul " << f.gen << " si are o durata de " << f.durata << " minute." << '\n';
-        out << "Actorul principal este " << f.actor_principal << '\n';
+        out << f.actor_principal << '\n';
         out << "Lista de actori:\n";
         for (int i = 0; i < f.actori.size(); i++)
             out << f.actori[i] << '\n';
@@ -633,7 +633,7 @@ public:
         // Generatorul de valori random
         random_device rd;
         mt19937 gen(rd());
-        uniform_int_distribution<> dist(1, 100);
+        uniform_int_distribution<> dist(1, s.numar_locuri);
 
         // Generarea valorilor
         generate(numbers.begin(), numbers.end(), [&dist, &gen]()
